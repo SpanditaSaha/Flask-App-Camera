@@ -25,6 +25,8 @@ net = cv2.dnn.readNetFromCaffe('./saved_model/deploy.prototxt.txt', './saved_mod
 
 #instatiate flask app  
 app = Flask(__name__, template_folder='./templates')
+env_config = os.getenv("PROD_APP_SETTINGS", "config.DevelopmentConfig")
+app.config.from_object(env_config)
 
 
 camera = cv2.VideoCapture(0)
